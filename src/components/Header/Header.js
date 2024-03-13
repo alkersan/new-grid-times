@@ -29,7 +29,21 @@ const Header = () => {
         </Row>
       </SuperHeader>
       <MainHeader>
+        <DesktopActions>
+          <ActionGroup>
+            <button>
+              <Search size={24} />
+            </button>
+            <button>
+              <Menu size={24} />
+            </button>
+          </ActionGroup>
+        </DesktopActions>
         <Logo />
+        <SubscribeActions>
+          <Button>Subscribe</Button>
+          <AlreadySubscribed>Already a subscriber?</AlreadySubscribed>
+        </SubscribeActions>
       </MainHeader>
     </header>
   );
@@ -39,6 +53,10 @@ const SuperHeader = styled.div`
   padding: 16px 0;
   background: var(--color-gray-900);
   color: white;
+  
+  @media ${QUERIES.laptopAndUp} {
+    display: none;
+  }
 `;
 
 const Row = styled(MaxWidthWrapper)`
@@ -65,6 +83,42 @@ const MainHeader = styled(MaxWidthWrapper)`
   justify-content: center;
   margin-top: 32px;
   margin-bottom: 48px;
+
+  @media ${QUERIES.laptopAndUp} {
+    margin-top: 16px;
+    margin-bottom: 72px;
+    display: grid;
+    grid-template-columns: 1fr 4fr 1fr;
+  }
+`;
+
+const DesktopActions = styled.div`
+  display: none;
+  
+  @media ${QUERIES.laptopAndUp} {
+    display: revert;
+  }
+`;
+
+const SubscribeActions = styled.div`
+  display: none;
+
+  @media ${QUERIES.laptopAndUp} {
+    justify-self: end;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+`;
+
+const AlreadySubscribed = styled.button`
+  font-family: var(--font-family-serif);
+  font-size: ${14 / 16}rem;
+  font-style: italic;
+  text-decoration: underline;
+  position: absolute;
+  bottom: 0;
 `;
 
 export default Header;
